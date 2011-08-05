@@ -1,0 +1,21 @@
+table {
+    border-width:1px; 
+    border-style:solid; 
+    border-color:black;
+    border-collapse:collapse;
+    border-spacing: 7px; 
+    width: 100%;
+}
+
+td { 
+    border-width:1px;
+    border-style:solid; 
+    border-color:black;
+    border-spacing: 7px;
+}
+
+#upload {
+    background-color: #668dff;
+    height: 25px;
+}
+

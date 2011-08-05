@@ -1,0 +1,11 @@
+# This file defines all module routes (Higher priority routes first)
+#
+# import these routes in the main app as :
+# *     /                       module:play-osgi
+#
+# ~~~~
+
+GET     /osgi/admin                      OSGiAdmin.index
+GET     /osgi/admin/start/{id}           OSGiAdmin.start
+GET     /osgi/admin/stop/{id}            OSGiAdmin.stop
+GET     /osgi/admin/uninstall/{id}       OSGiAdmin.uninstall

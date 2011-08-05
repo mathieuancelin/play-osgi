@@ -1,0 +1,52 @@
+#{extends 'main.html' /}
+#{set title:'Home' /}
+
+<h1>Bundles list</h1>
+
+<div id="infos">
+    Bundle informations : ${bundles.size()} bundles in total
+</div>
+
+<div id="upload">
+    <form action="#"
+          enctype="multipart/form-data" method="post">
+        <p>
+            <input type="file" name="datafile" size="60">
+            <input type="checkbox" name="start"> start 
+            <input type="submit" value="Install or update">
+        </p>
+    </form>
+</div>
+<table border="1" cellspacing="7">
+    <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Status</th>
+        <th>Actions</th>
+    </tr>
+    #{list items:bundles, as:'bundle' }
+    <tr>
+        <td>${bundle.bundleId}</td>
+        <td>${bundle.symbolicName}</td>
+        <td>%{ print osgiUtil.getState(bundle.state) }%</td>
+        <td><a href="@{OSGiAdmin.start(bundle.bundleId)}">start</a> <a href="@{OSGiAdmin.stop(bundle.bundleId)}">stop</a> <a href="@{OSGiAdmin.uninstall(bundle.bundleId)}">uninstall</a></td>
+    </tr>
+    #{/list}
+</table>
+
+<div id="upload">
+    <form action="#"
+          enctype="multipart/form-data" method="post">
+        <p>
+            <input type="file" name="datafile" size="60">
+            <input type="checkbox" name="start"> start 
+            <input type="submit" value="Install or update">
+        </p>
+    </form>
+</div>
+
+#{if flash.error}
+    <p class="error">
+        ${flash.error}
+    </p>
+#{/if}
