@@ -1,0 +1,5 @@
+target
+*.class
+tmp
+*.DS_Store
+play-osgi-sample

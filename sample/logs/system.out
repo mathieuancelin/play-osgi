@@ -1,4 +1,0 @@
-Listening for transport dt_socket at address: 8000
-12:40:21,997 INFO  ~ Starting /Users/mathieuancelin/Desktop/play-osgi
-12:40:22,886 WARN  ~ You're running Play! in DEV mode
-12:40:23,012 INFO  ~ Listening for HTTP on port 9000 (Waiting a first request to start) ...
