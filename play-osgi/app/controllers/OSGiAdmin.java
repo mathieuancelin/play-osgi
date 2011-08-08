@@ -44,7 +44,7 @@ public class OSGiAdmin extends Controller {
             OSGi.bundleContext().getBundle(id).start();
         } catch (Exception e) {
             e.printStackTrace();
-            String error = "Error while starting bundle " + id;
+            String error = "Error while starting bundle " + id + " : " + e;
             flash.put("error", error);
         }
         index();
@@ -55,7 +55,7 @@ public class OSGiAdmin extends Controller {
             OSGi.bundleContext().getBundle(id).stop();
         } catch (Exception e) {
             e.printStackTrace();
-            String error = "Error while stopping bundle " + id;
+            String error = "Error while stopping bundle " + id + " : " + e;
             flash.put("error", error);
         }
         index();
@@ -66,7 +66,7 @@ public class OSGiAdmin extends Controller {
             OSGi.bundleContext().getBundle(id).uninstall();
         } catch (Exception e) {
             e.printStackTrace();
-            String error = "Error while uninstalling bundle " + id;
+            String error = "Error while uninstalling bundle " + id + " : " + e;
             flash.put("error", error);
         }
         index();
