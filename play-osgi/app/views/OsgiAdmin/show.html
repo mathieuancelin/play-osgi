@@ -1,0 +1,15 @@
+#{extends 'main.html' /}
+#{set title:'Details' /}
+
+<table border="1" cellspacing="7">
+    <tr>
+        <th>Key</th>
+        <th>value</th>
+    </tr>
+    #{list items:bundle.headers.keys(), as:'key' }
+    <tr>
+        <td>${key}</td>
+        <td>${bundle.headers.get(key)}</td>
+    </tr>
+    #{/list}
+</table>

@@ -1,7 +1,7 @@
 #{extends 'main.html' /}
-#{set title:'Home' /}
+#{set title:'OSGi Admin Console' /}
 
-<h1>Bundles list</h1>
+<h1>OSGi administration console</h1>
 
 <div id="infos">
     Bundle informations : ${bundles.size()} bundles in total
@@ -27,7 +27,7 @@
     #{list items:bundles, as:'bundle' }
     <tr>
         <td>${bundle.bundleId}</td>
-        <td>${bundle.symbolicName}</td>
+        <td><a href="@{OSGiAdmin.show(bundle.bundleId)}">${bundle.symbolicName}</a></td>
         <td>%{ print osgiUtil.getState(bundle.state) }%</td>
         <td><a href="@{OSGiAdmin.start(bundle.bundleId)}">start</a> <a href="@{OSGiAdmin.stop(bundle.bundleId)}">stop</a> <a href="@{OSGiAdmin.uninstall(bundle.bundleId)}">uninstall</a></td>
     </tr>

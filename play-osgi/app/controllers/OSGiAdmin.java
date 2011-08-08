@@ -15,6 +15,11 @@ public class OSGiAdmin extends Controller {
         render(bundles, osgiUtil);
     }
     
+    public static void show(long id) {
+        Bundle bundle = OSGi.bundleContext().getBundle(id);
+        render(bundle);
+    }
+    
     public static void start(long id) {
         try {
             OSGi.bundleContext().getBundle(id).start();
