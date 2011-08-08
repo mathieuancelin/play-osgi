@@ -1,15 +1,30 @@
 #{extends 'main.html' /}
 #{set title:'Details' /}
 
-<table border="1" cellspacing="7">
-    <tr>
-        <th>Key</th>
-        <th>value</th>
-    </tr>
+<h1>Bundle ${bundle.symbolicName} (${bundle.bundleId})</h1>
+<a href="@{OSGiAdmin.index}">back</a><br/>
+<table id="hor-zebra" summary="Bundle informations">
+    <thead>
+    	<tr>
+            <th scope="col">Key</th>
+            <th scope="col">Value</th>
+        </tr>
+    </thead>
+    <tbody>
+    %{int i = 0}%
     #{list items:bundle.headers.keys(), as:'key' }
+    #{if i % 2 == 0}
+    <tr class="odd">
+    #{/if}
+    #{ifnot i % 2 == 0}
     <tr>
+    #{/ifnot}
         <td>${key}</td>
         <td>${bundle.headers.get(key)}</td>
+        %{i++}%
     </tr>
     #{/list}
+    </tbody>
 </table>
+
+

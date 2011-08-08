@@ -9,3 +9,5 @@ GET     /osgi/admin                      OSGiAdmin.index
 GET     /osgi/admin/start/{id}           OSGiAdmin.start
 GET     /osgi/admin/stop/{id}            OSGiAdmin.stop
 GET     /osgi/admin/uninstall/{id}       OSGiAdmin.uninstall
+GET     /osgi/admin/show/{id}            OSGiAdmin.show
+POST    /osgi/admin/upload               OSGiAdmin.uploadBundle

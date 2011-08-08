@@ -1,21 +1,74 @@
-table {
-    border-width:1px; 
-    border-style:solid; 
-    border-color:black;
-    border-collapse:collapse;
-    border-spacing: 7px; 
-    width: 100%;
+h1 {
+    font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+    font-size: 30px; 
 }
 
-td { 
-    border-width:1px;
-    border-style:solid; 
-    border-color:black;
-    border-spacing: 7px;
+#hor-zebra {
+    font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+    font-size: 12px;
+    text-align: left;
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#hor-zebra th {
+    font-size: 14px;
+    font-weight: normal;
+    padding: 10px 8px;
+    color: #039;
+}
+
+#hor-zebra td {
+    padding: 8px;
+    color: #669;
+}
+
+#hor-zebra .odd {
+    background: #e8edff; 
 }
 
 #upload {
     background-color: #d0e3ff;
     height: 25px;
+}
+
+#infos {
+    background-color: #DDDDDD;
+    font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+}
+
+#mask {
+    position:absolute;
+    z-index:9000;
+    background-color:#000;
+    display:none;
+}
+
+#boxes .window {
+    position:absolute;
+    width: 90%;
+    height: 90%;
+    display:none;
+    z-index:9999;
+}
+
+#boxes .window .close {
+    text-align: right;
+}
+
+#boxes #dialog {
+    width: 90%; 
+    height: 90%;
+    background-color:#FFFFFF;
+}
+
+.error {
+    background: #c00;
+    color: #fff;
+    font-size: 90%;
+    padding: 3px 5px;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    -webkit-box-shadow: 0 2px 0 #800;
 }
 

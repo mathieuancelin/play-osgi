@@ -12,9 +12,11 @@ import org.osgi.framework.Constants;
 
 public class OSGiBoostrap {
     
-    public static File deployDir = new File("autodeploy");
+    public static final File deployDir = new File("autodeploy");
     
-    public static File dataDir = new File("/tmp/osgidata");
+    public static final File dataDir = new File("/tmp/osgidata");
+    
+    public static final File uploadedDir = new File(dataDir, "uploaded");
     
     public static void createDeployDir() {
         if (!deployDir.exists()) {
@@ -24,12 +26,14 @@ public class OSGiBoostrap {
     }
     
     private static void cascadeDelete(File in) {
-        for (File f : in.listFiles()) {
-            if (f.isFile()) {
-                f.delete();
-            } else {
-                cascadeDelete(f);
-                f.delete();
+        if (in != null && in.listFiles() != null) {
+            for (File f : in.listFiles()) {
+                if (f.isFile()) {
+                    f.delete();
+                } else {
+                    cascadeDelete(f);
+                    f.delete();
+                }
             }
         }
     }
@@ -38,7 +42,7 @@ public class OSGiBoostrap {
         try {
             FrameworkFactory factory = new FrameworkFactory();
             Map<String, String> config = new HashMap<String, String>();
-            config.put(Constants.FRAMEWORK_SYSTEMPACKAGES_EXTRA, "models");
+            config.put(Constants.FRAMEWORK_SYSTEMPACKAGES_EXTRA, "models, play");
             config.put(Constants.FRAMEWORK_STORAGE, dataDir.getAbsolutePath());
             config.put(Constants.FRAMEWORK_STORAGE_CLEAN, "true");
             config.put(Constants.FRAMEWORK_EXECUTIONENVIRONMENT, "J2SE-1.6");
@@ -46,6 +50,9 @@ public class OSGiBoostrap {
             config.put("osgi.shell.telnet.port", "6666");
             OSGi.osgiFramework = factory.newFramework(config);
             OSGi.osgiFramework.start();
+            if (!uploadedDir.exists()) {
+                uploadedDir.mkdirs();
+            }
             return true;
         } catch (Exception e) {
             e.printStackTrace();

@@ -1,6 +1,12 @@
 #{extends 'main.html' /}
 #{set title:'OSGi Admin Console' /}
 
+<div id="mask"></div>
+<div id="globale">
+<div id="boxes">
+    <div id="dialog" class="window"></div>
+</div>
+
 <h1>OSGi administration console</h1>
 
 <div id="infos">
@@ -8,7 +14,7 @@
 </div>
 
 <div id="upload">
-    <form action="#"
+    <form action="@{OSGiAdmin.uploadBundle}"
           enctype="multipart/form-data" method="post">
         <p>
             <input type="file" name="datafile" size="60">
@@ -17,25 +23,35 @@
         </p>
     </form>
 </div>
-<table border="1" cellspacing="7">
-    <tr>
-        <th>Id</th>
-        <th>Name</th>
-        <th>Status</th>
-        <th>Actions</th>
-    </tr>
-    #{list items:bundles, as:'bundle' }
-    <tr>
-        <td>${bundle.bundleId}</td>
-        <td><a href="@{OSGiAdmin.show(bundle.bundleId)}">${bundle.symbolicName}</a></td>
-        <td>%{ print osgiUtil.getState(bundle.state) }%</td>
-        <td><a href="@{OSGiAdmin.start(bundle.bundleId)}">start</a> <a href="@{OSGiAdmin.stop(bundle.bundleId)}">stop</a> <a href="@{OSGiAdmin.uninstall(bundle.bundleId)}">uninstall</a></td>
-    </tr>
-    #{/list}
+
+<table id="hor-zebra" summary="Available OSGi Bundles">
+    <thead>
+    	<tr>
+            <th scope="col">Id</th>
+            <th scope="col">Name</th>
+            <th scope="col">Status</th>
+            <th scope="col">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        #{list items:bundles, as:'bundle' }
+        #{if bundles.indexOf(bundle) % 2 == 0}
+        <tr class="odd">
+        #{/if}
+        #{ifnot bundles.indexOf(bundle) % 2 == 0}
+        <tr>
+        #{/ifnot}
+            <td>${bundle.bundleId}</td>
+            <td><a href="@{OSGiAdmin.show(bundle.bundleId)}" id="modal">${bundle.symbolicName}</a></td>
+            <td>%{ print osgiUtil.getState(bundle.state) }%</td>
+            <td><a href="@{OSGiAdmin.start(bundle.bundleId)}">start</a> <a href="@{OSGiAdmin.stop(bundle.bundleId)}">stop</a> <a href="@{OSGiAdmin.uninstall(bundle.bundleId)}">uninstall</a></td>
+        </tr>
+        #{/list}
+    </tbody>
 </table>
 
 <div id="upload">
-    <form action="#"
+    <form action="@{OSGiAdmin.uploadBundle}"
           enctype="multipart/form-data" method="post">
         <p>
             <input type="file" name="datafile" size="60">
