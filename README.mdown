@@ -1,0 +1,74 @@
+Play OSGi
+=========
+
+This Play! module intent to bring the power and the dynamism of OSGi into Play! applications.
+
+OSGi Startup
+------------
+
+The OSGi framework is embedded inside the Play OSGi module and is started/stopped with the framework.
+The OSGi framework used is Apache Felix.
+
+OSGi Shell telnet access
+-------------
+
+Once started, the OSGi framework provides a shell services to interact with it. This shell is available via telnet protocole.
+Just type in a terminal :
+
+`telnet localhost 6666`
+
+and you will be able to interact with the OSGi framework :
+
+`bundlelevel <level> <id> ...|<id>   - set or get bundle start level.
+cd [<base-URL>]                     - change or display base URL.
+headers [<id> ...]                  - display bundle header properties.
+help                                - display impl commands.
+install <URL> [<URL> ...]           - install bundle(s).
+packages [<id> ...]                 - list exported packages.
+ps [-l | -s | -u]                   - list installed bundles.
+refresh [<id> ...]                  - refresh packages.
+resolve [<id> ...]                  - attempt to resolve the specified bundles.
+services [-u] [-a] [<id> ...]       - list registered or used services.
+shutdown                            - shutdown framework.
+start <id> [<id> <URL> ...]         - start bundle(s).
+startlevel [<level>]                - get or set framework start level.
+stop <id> [<id> ...]                - stop bundle(s).
+uninstall <id> [<id> ...]           - uninstall bundle(s).
+update <id> [<URL>]                 - update bundle.
+version                             - display version of framework.
+`
+
+OSGi bundles auto-deploy
+------------------------
+
+The Play OSGi module provide a way to autodeploy bundles. Once you application is started, just drop OSGi bundle in the 'autodeploy' folder at the root of your application.
+
+OSGi web console
+----------------
+
+An OSGi admin web console is available in the app using the Play OSGi module.
+It's available at : http://localhost:9000/osgi/admin
+
+OSGi API access
+---------------
+
+You can access the current bundle context with the following method :
+
+`BundleContext context = OSGi.bundleContext();`
+
+OSGi Services programmatic lookup
+---------------------------------
+You can lookup OSGi services with the following methods :
+
+`MyService service = OSGi.service(MyService.class);`
+
+`Iterable<MyService> services = OSGi.services(MyService.class, "(lang=*)");`
+
+OSGi Services injection
+-----------------------
+
+You can lookup OSGi services with built-in dependency injection :
+
+`@Inject @OSGiService private MyService service;`
+
+`@Inject @OSGiService("(lang=*)") private Iterable<MyService> services;`
